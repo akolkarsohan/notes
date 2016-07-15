@@ -1,0 +1,32 @@
+# Initiating a repository
+
+  git init
+
+# Adding file for the commit
+
+  git add <filename>
+  
+example:
+
+  git add notes.txt
+
+# Check status of the repo
+
+  git status
+
+# Commit changes to staging server
+
+  git commit -m "Enter the message"
+
+# Add remote repository link to the local git directory
+
+  git remote add origin <path-of-remote-github-repo>
+
+example
+
+  git remote add origin https://github.com/username/new_repo
+
+# Push the changes to the remote repository (push master branch as origin)
+
+  git push -u origin master  
+
