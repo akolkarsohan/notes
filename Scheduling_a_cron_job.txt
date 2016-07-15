@@ -1,0 +1,63 @@
+SCHEDULING A CRON JOB
+
+1.	Open the crontab file in edit mode.  A new file will be created if it doesn't already exist.
+onelink@corv-vm-sohan onelink> crontab -e
+
+2.	It is important to declare path of the script which needs to be executed. Declare paths of other related files too (such as path to output log file).
+For example:	
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:~/logs:~/linux:home/user/: ~/logs/:
+Notice that ":" separates one path from the other
+While declaring the path, mention only the parent directory as the files and sub-directories under the parent directory will also be included. So if you declare /usr/local/packages/, there is no need to declare /usr/local/packages/smt. 
+
+3.	Now set the day, date and time when the script should run. This can be done using five fields explained below:
+  *    *     *   *    *        command to be executed         
+  |    |     |   |    |                                       
+  |    |     |   |    +----- day of week (0 - 6) (Sunday=0)   
+  |    |     |   +------- month (1 - 12)                      
+  |    |     +--------- day of month (1 - 31)                 
+  |    +----------- hour (0 - 23)                             
+  +------------- min (0 - 59)
+* in the value field above means all legal values as in braces for that column.
+
+For example, following will run Hayward maintenance script every Friday at 2pm in the background
+0 14 * * 5 /home/user/daily-update.sh &
+If we need to direct the output to a log file (recommended) use > and enter the path of the log file.
+0 14 * * 5 /home/user/daily-update.sh  > ~/logs/user/daily-update-$(date "+\%Y-\%m-\%d").log &
+
+If there is a need to run script only on specific days we can specify the range of days. So, to execute script on week days use 1-5. Following example runs the daily OneLink software update script only on week days at 7am in the morning.
+
+00 07 * * 1-5 ~/daily_update_machine.sh > ~/logs/daily-update-$(date "+\%Y-\%m-\%d").log &
+
+4.	Save crontab file and see if the changes correctly saved. You will be prompted if there are any syntax errors in the crontab file.
+NOTE : There must a blank line at the end of the file to run the CRON jobs correctly. 
+Your final crontab file should look something similar to this
+
+#==============#
+# DECLARATIONS #
+#==============#
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:~/logs:~/linux:home/user/: ~/logs/:
+CRON_TZ="America/Los_Angeles"
+#==============#
+# ACTIVE CRONS #
+#==============#
+# DAILY ONELINK UPDATE
+0 14 * * 5 /home/user/daily-update.sh  > ~/logs/user/daily-update-$(date "+\%Y-\%m-\%d").log &
+
+You can use crontab -l to view the contents of the crontab file without going to edit mode.
+
+> crontab -l
+
+Changing the default text editor for crontab file
+You can change the default text editor to your preferred editor (such as nano) by setenv command
+setenv EDITOR emacs
+But this will apply only for the current session
+
+To make to change permanent, follow these steps:
+1)	nano ~/.cshrc
+2)	Search line similar to "setenv EDITOR nano" in the file and replace emacs with nano. So after replacement the line should look  like below:
+
+setenv EDITOR emacs 
+
+3)	Save and exit the file
+4)	source ~/.cshrc 
+5) 	crontab -e should open emacs editor now
