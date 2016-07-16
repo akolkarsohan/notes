@@ -1,0 +1,35 @@
+Manifests
+    |
+    |__
+       Classes
+         |
+	 |__Resources
+	  	|
+		|__Attributes, Values
+    
+
+
+# Checking Rescource declarations
+
+  puppet resource <type> <title>
+  puppet resource user root
+
+# Parsing manifest file
+
+  puppet parser validate filename.pp
+
+# Apply the changes made to manifest file
+
+  puppet apply filename.pp
+
+# Print modulepath
+
+  puppet config print modulepath
+
+# Examine the directory structure of a module.
+
+  tree <modulename>
+
+# Gather list of facts of module
+
+  facter <modulename>
