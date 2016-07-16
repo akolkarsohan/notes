@@ -1,7 +1,7 @@
 SCHEDULING A CRON JOB
 
 1.	Open the crontab file in edit mode.  A new file will be created if it doesn't already exist.
-onelink@corv-vm-sohan onelink> crontab -e
+> crontab -e
 
 2.	It is important to declare path of the script which needs to be executed. Declare paths of other related files too (such as path to output log file).
 For example:	
@@ -24,7 +24,7 @@ For example, following will run Hayward maintenance script every Friday at 2pm i
 If we need to direct the output to a log file (recommended) use > and enter the path of the log file.
 0 14 * * 5 /home/user/daily-update.sh  > ~/logs/user/daily-update-$(date "+\%Y-\%m-\%d").log &
 
-If there is a need to run script only on specific days we can specify the range of days. So, to execute script on week days use 1-5. Following example runs the daily OneLink software update script only on week days at 7am in the morning.
+If there is a need to run script only on specific days we can specify the range of days. So, to execute script on week days use 1-5. Following example runs the daily software update script only on week days at 7am in the morning.
 
 00 07 * * 1-5 ~/daily_update_machine.sh > ~/logs/daily-update-$(date "+\%Y-\%m-\%d").log &
 
@@ -40,7 +40,7 @@ CRON_TZ="America/Los_Angeles"
 #==============#
 # ACTIVE CRONS #
 #==============#
-# DAILY ONELINK UPDATE
+# DAILY UPDATE
 0 14 * * 5 /home/user/daily-update.sh  > ~/logs/user/daily-update-$(date "+\%Y-\%m-\%d").log &
 
 You can use crontab -l to view the contents of the crontab file without going to edit mode.
