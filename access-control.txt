@@ -28,6 +28,10 @@
 
   userdel new_user
 
+# Remove User and remove all files from respective user home directory
+
+  userdel -r new_user
+
 # Switch to new_user
 
   su new_user
