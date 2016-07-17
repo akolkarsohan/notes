@@ -1,0 +1,35 @@
+# Create User
+
+  # create home directory for user (-m)
+  useradd -m -c 'New User' new_user
+
+  # skip home directory creation for user (-M)
+  useradd -M -c 'New User' new_user
+
+  # create user with different base directory (--base-dir)
+  useradd --base-dir <dict_path> -c 'New User' new_user
+
+
+# Create Password
+
+  passwd new_user
+  
+  # provide password with expiration date (no date provide means new password needs to be enter on reboot)
+  passwd -e new_user
+
+  # provide passowrd with expiration date
+  passwd -e 2016-06-06 new_user
+
+
+# All user usernames stored in /etc/shadow
+# All user passwords stored in /etc/passwd
+
+# Remove User
+
+  userdel new_user
+
+# Switch to new_user
+
+  su new_user
+ 
+
