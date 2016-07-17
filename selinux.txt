@@ -1,0 +1,23 @@
+# Changing SELinux context of file/folder (semanage fcontext)
+
+Let us assume that we are going to change SELinux context of folder named "media-files" under path /var/www/html/.
+
+Check if the ownership of the folder is "root"
+> ll -Z
+-rwxr-xr-x. ec2-user ec2-user unconfined_u:object_r:user_home_t:s0 /var/www/html/media-files/
+
+2. If not, change it to "root"
+
+> chown root:root /var/www/html/media-files
+
+3. Change the context from user_home_t to httpd_sys_content_t.
+
+> semanage fcontext -a -t httpd_sys_content_t /var/www/html/media-files/
+> ll -Z
+-rwxr-xr-x. root root unconfined_u:object_r:user_home_t:s0 /var/www/html/media-files/
+
+4. Apply the changes recursively for all the files in the "media-file" folder.
+
+> restore con -R -v /var/www/html/media-files/
+> ll -Z
+-rwxr-xr-x. root root unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/media-files/
