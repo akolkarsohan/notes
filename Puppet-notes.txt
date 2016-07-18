@@ -14,6 +14,11 @@ Manifests
   puppet resource <type> <title>
   puppet resource user root
 
+# Checking status of resource package
+
+  puppet resource package <packagename>
+  puppet resource package ntp
+
 # Parsing manifest file
 
   puppet parser validate filename.pp
@@ -42,3 +47,7 @@ Manifests
 
   puppet module search <string>
   puppet module search mysql
+
+# Run puppet agent manually
+
+  puppet agent -t
