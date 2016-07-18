@@ -33,3 +33,12 @@ Manifests
 # Gather list of facts of module
 
   facter <modulename>
+
+# Install module from Forge (modules are placed in /etc/puppetlabs/code/environments/production/modules)
+
+  puppet module install <modulename>
+
+# Search module using a string
+
+  puppet module search <string>
+  puppet module search mysql
