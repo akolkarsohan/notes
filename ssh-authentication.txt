@@ -1,44 +1,44 @@
 # Installing SSH server
 
-  ```yum install openssh.x86_64```
+  yum install openssh.x86_64
 
 # Configuring firewall to accept ssh connections at port 22
 
   # Following adds ACCEPT tcp protocol at destination port 22 (default ssh port) at the first line of iptables file 
-  ```iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT```
+  iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT
 
 # Check firewall to see if above ssh rule is corrected added
 
-  ```iptables -L INPUT```
+  iptables -L INPUT
 
 # Restart sshd server
 
-  ```service sshd restart```
+  service sshd restart
 
 # Configure ssh config file
 
-  ```emacs /etc/ssh/sshd_config```
+  emacs /etc/ssh/sshd_config
 
 # Create ssh public key
 
-  ```ssh-keygen```
+  ssh-keygen
 
 # Copy ssh key to remote client
 
-  ```ssh-copy-id <remote_user@remote_IP>```
-  ```ssh-copy-id sohan@10.0.0.5```
+  ssh-copy-id <remote_user@remote_IP>
+  ssh-copy-id sohan@10.0.0.5
 
   # Fixing "Agent admitted failure to sign using the key."
 
- ```ssh-add```
+ ssh-add
 
 # Login into remote client
 
-  ```ssh <remote_user@remote_IP> ```
-  ```ssh sohan@10.0.0.5```
+  ssh <remote_user@remote_IP> 
+  ssh sohan@10.0.0.5
 
 # Copy files from server to client or vice versa
 
-  ```scp <file_path> <remote_user@remote_IP:remote_path>```
-  ```scp ~/Documents/test.sh sohan@10.0.0.5:~/Documents/Testing/test.ssh```
+  scp <file_path> <remote_user@remote_IP:remote_path>
+  scp ~/Documents/test.sh sohan@10.0.0.5:~/Documents/Testing/test.ssh
 
