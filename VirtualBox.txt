@@ -1,0 +1,13 @@
+# Controlling Virtual Box VMs from terminal
+
+# Start VM
+
+  VBoxManage startvm <VM-name> --type headless
+  VBoxManage startvm CentOS-7 --type headless
+
+  *headless produces no visible output on the host
+
+# Shutdown VM
+
+  VBoxManage controlvm <VM-name> poweroff
+  VBoxManage controlvm CentOS-7 poweroff
