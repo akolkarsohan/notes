@@ -1,0 +1,19 @@
+# Linux package management using rpm
+# There are ton of options for rpm, here are few frequently used ones
+
+# Install rpm package
+
+  rpm -iv <package-name>
+
+# Checking if the package is already installed or not
+
+  rpm -q <package-name>
+
+# Upgrade package
+
+  rpm -U <package-name>
+
+# Remove/erase package
+
+  rpm -e <package-name>
+
