@@ -1,0 +1,84 @@
+# INSTALLING LAMP STACK MANUALLY (WITHOUT AUTOMATED TOOLS LIKE CHEF/PUPPET)
+# This process is based on CentOS 7, but should work for RHEL 7 too
+
+# APACHE SERVER
+
+  1. Installing and starting Apache server
+
+     sudo yum install httpd
+     sudo systemctl start httpd.service
+
+  2. Check if Apache is installed correctly by going to following page.
+     You can open it in your GUI browser such as Firefox or text based browser such as elinks
+
+     elinks http://server_IP_address/
+
+  3. Start web server on boot.
+
+     sudo systemctl enable httpd.service
+
+# MYSQL (MARIADB) DATABASE
+
+  1. Installing and starting MariaDB
+
+     sudo yum install mariadb-server mariadb
+     sudo systemctl start mariadb
+
+  2. Run security script to restrict access
+
+     sudo mysql_secure_installation
+
+  3. Follow the steps in the script which will include root password and other details
+
+  4. Enable MariaBD on boot.
+
+     sudo systemctl enable mariadb.service
+
+# INSTALL PHP PACKAGES AND MODULES
+
+  1. Install PHP and PHP-MYSQL packages
+
+     sudo yum install php php-mysql
+
+  2. Restart web server so that the changes take into effect
+
+     sudo systemctl restart httpd.service
+
+  3. Install any required php modules, to search for all the php modules enter following:
+
+     sudo yum search php-
+
+     Recommended module is php-fpm, install it using usual yum install
+
+     sudo yum install php-fpm
+
+# CREATING TEST PAGE
+
+  1. Create a test page in /var/www/html directory, general testing page info.php page which shows the details about installed php on your server.
+
+     sudo emacs /var/www/html/info.php
+
+  2. Enter following code in info.php
+
+     <?php phpinfo(); ?>
+
+# CONFIGURE FIREWALL
+
+  1. Allow http and https traffic through web server, and afterwards reload firewall
+
+     sudo firewall-cmd --permanent --zone=public --add-service=http
+     sudo firewall-cmd --permanent --zone=public --add-service=https
+     sudo firewall-cmd --reload
+
+  2. Check if the above rules are added correctly
+
+     firewall-cmd --list-all
+
+# TESTING SETUP ON TESTING PAGE
+
+  1. Open the info.php page in Firefox or elinks to check if web server is working correctly
+
+     elinks http://server_IP_address/info.php
+
+
+# LAMP STACK IS SUCCESSFULLY INSTALLED
