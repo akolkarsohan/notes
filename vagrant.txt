@@ -1,0 +1,6 @@
+#Vagrant development environment box configurations
+
+# Specifies the name of box
+config.vm.box = "thussain/rhel7"
+# Configuring port forwarding
+config.vm.network "forwarded_port", guest: 22, host: 4577
